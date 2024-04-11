@@ -11,3 +11,6 @@
 /SubHub/obj/Debug/net8.0-windows10.0.19041.0/win10-x64
 /SubHub/Platforms/Android/Resources/values
 /SubHub/obj
+/SubHub/bin/Debug/net8.0-android
+/SubHub/bin/Debug/net8.0-windows10.0.19041.0/win10-x64/AppX
+/SubHub/bin/Debug/net8.0-windows10.0.19041.0/win10-x64
