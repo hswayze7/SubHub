@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/SubHub/.vs/SubHub
+/.vs/SubHub/FileContentIndex
+/SubHub/obj/Debug/net8.0-android/lp
+/SubHub/obj/Debug/net8.0-android
+/SubHub/obj/Debug/net8.0-ios/iossimulator-x64
+/SubHub/obj/Debug/net8.0-maccatalyst/maccatalyst-x64
+/SubHub/obj/Debug/net8.0-windows10.0.19041.0/win10-x64
+/SubHub/Platforms/Android/Resources/values
+/SubHub/obj
