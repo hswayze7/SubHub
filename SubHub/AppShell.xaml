@@ -4,12 +4,13 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:SubHub"
-    Shell.FlyoutBehavior="Disabled"
-    Title="SubHub">
+    xmlns:views="clr-namespace:SubHub.Views"
+    Title="SubHub"
+    Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="SubHub"
+        ContentTemplate="{DataTemplate views:SubLogin}"
+        Route="SubLogin" />
 
 </Shell>

@@ -1,10 +1,12 @@
-﻿namespace SubHub
+﻿using SubHub.Views;
+
+namespace SubHub;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+        Routing.RegisterRoute(nameof(SubLogin), typeof(SubLogin));
     }
 }
