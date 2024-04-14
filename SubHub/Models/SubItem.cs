@@ -7,11 +7,25 @@ using SQLite;
 
 namespace SubHub.Models;
 
+
+[Table("SubItem")]
 public class SubItem
 {
     [PrimaryKey, AutoIncrement]
-    public int userID { get; set; }
-    public string Reminder {  get; set; }
-    public string Subscription {  get; set; }
-    public int PaymentMethod {  get; set; }
+    [Column("UserID")]
+    public int UserID { get; set; }
+
+    [Column("Username")]
+    public string Username { get; set; }
+
+    [Column("Password")]
+    public string Password { get; set; }
+  //  public string Email { get; set; }
+  //  public string Reminder {  get; set; }
+  //  public string Subscription {  get; set; }
+   // public int PaymentMethod {  get; set; }
 }
+
+
+
+
