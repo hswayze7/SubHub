@@ -14,3 +14,5 @@
 /SubHub/bin/Debug/net8.0-android
 /SubHub/bin/Debug/net8.0-windows10.0.19041.0/win10-x64/AppX
 /SubHub/bin/Debug/net8.0-windows10.0.19041.0/win10-x64
+/SubHub/workload-install.ps1
+/SubHub/.vs/ProjectEvaluation
