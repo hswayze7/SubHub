@@ -4,18 +4,19 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:SubHub.Models"
-    Title="AddSubPage"
-    x:DataType="models:SubscriptionItem">
+    Title="AddSubPage">
     <StackLayout Padding="20">
         <Label Text="Subscription Name" />
         <Entry
             x:Name="subNameEntry"
+            x:DataType="models:SubscriptionItem"
             Placeholder="Enter name"
             Text="{Binding Name}" />
 
         <Label Text="Description" />
         <Editor
             x:Name="subDescripEntry"
+            x:DataType="models:SubscriptionItem"
             HeightRequest="100"
             Placeholder="Enter description"
             Text="{Binding Description}" />
@@ -23,9 +24,37 @@
         <Label Text="Price" />
         <Entry
             x:Name="priceEntry"
+            x:DataType="models:SubscriptionItem"
             Keyboard="Numeric"
             Placeholder="Cost"
             Text="{Binding Price}" />
+
+        <Label Text="Payment Method" />
+        <Entry
+            x:Name="typeEntry"
+            x:DataType="models:PaymentMethodItem"
+            Placeholder="Type of Payment"
+            Text="{Binding Type}" />
+
+        <Label Text="Card Number" />
+        <Entry
+            x:Name="paymentMethodEntry"
+            x:DataType="models:PaymentMethodItem"
+            Keyboard="Numeric"
+            MaxLength="16"
+            Placeholder="Card Number"
+            Text="{Binding CardNumber}" />
+
+        <Label Text="CvC" />
+        <Entry
+            x:Name="CvCEntry"
+            x:DataType="models:PaymentMethodItem"
+            Keyboard="Numeric"
+            MaxLength="3"
+            Placeholder="CvC"
+            Text="{Binding CvC}" />
+
+
 
         <Button Clicked="SaveSubBtn_Clicked" Text="Save" />
     </StackLayout>

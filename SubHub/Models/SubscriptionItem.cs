@@ -36,6 +36,6 @@ public class SubscriptionItem
 
     
     [ManyToOne]
-    public SubItem User { get; set; }
+    public SubItem? User { get; set; }
 
 }

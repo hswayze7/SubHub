@@ -1,21 +1,17 @@
 using Microsoft.Maui.Controls;
 using SubHub.Models;
 using SubHub.Data;
-namespace SubHub.Views;
 using SQLite;
+
+
+namespace SubHub.Views;
+
 
 public partial class SubLogin : ContentPage
 {
 	
 	SubManageDatabase database;
 	private int tempUserId;
-	//SubItem subItem;
-
-/*	public SubItem SubItem
-	{
-		get => BindingContext as SubItem;
-		set => BindingContext = value;
-	}*/
 
 	public SubLogin(SubManageDatabase manageDatabase)
 	{
@@ -37,25 +33,30 @@ public partial class SubLogin : ContentPage
 		if (isAuthenticated)
 		{
 			await DisplayAlert("Success", "You have logged in", "OK");
-			/*SubManageDatabase database = new SubManageDatabase();
-			SubItem user = new SubItem
+			//Create a new User, saving password and username to that user.
+			var user = new SubItem
 			{
 				Username = username,
 				Password = password
-			};*/
+			};
 
 			//await database.AddNewUser(username, password);
-			await database.CreateUser(new SubItem
+			/*await database.CreateUser(new SubItem
 			{
 				Username = username,
 				Password = password
-			});
+			});*/
 
-            var testUser = await database.GetUserByUsernameAndPassword(username, password);
+			//Calling the database to create the user above
+			await database.CreateUser(user);
+
+			//Getting user by username and password and assigning the UserID to userId which will be used to display the subscription on the next page for that specific user.
+			var testUser = await database.GetUserByUsernameAndPassword(username, password);
             int userId = testUser.UserID;
 
             Console.WriteLine("Navigating to next page");
-			await Shell.Current.GoToAsync($"{nameof(SubPage)}?userId={userId}");
+			//await Shell.Current.GoToAsync($"{nameof(SubPage)}?userId={userId}");
+			await Navigation.PushAsync(new SubPage(userId));
 			
 		}
 		else

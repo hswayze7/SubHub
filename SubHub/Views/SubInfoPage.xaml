@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SubHub.Views.SubInfoPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:SubHub.Models"
+    Title="SubInfoPage">
+    <StackLayout Padding="20">
+        <Label
+            FontSize="Large"
+            HorizontalOptions="Center"
+            Text="Subscription Details" />
+
+        <Label FontAttributes="Bold" Text="Name: " />
+        <Label x:Name="NameLabel" />
+
+        <Label
+            Margin="0,10,0,0"
+            FontAttributes="Bold"
+            Text="Description: " />
+        <Label x:Name="DescriptionLabel" />
+
+        <Label
+            Margin="0,10,0,0"
+            FontAttributes="Bold"
+            Text="Price: " />
+        <Label x:Name="PriceLabel" />
+
+        <Label
+            Margin="0,10,0,0"
+            FontAttributes="Bold"
+            Text="Payment Method Type" />
+        <Label x:Name="PaymentMethodTypeLabel" />
+
+        <Label
+            Margin="0,10,0,0"
+            FontAttributes="Bold"
+            Text="Card Number:" />
+        <Label x:Name="CardNumberLabel" />
+
+        <Label
+            Margin="0,10,0,0"
+            FontAttributes="Bold"
+            Text="CvC: " />
+        <Label x:Name="CvCLabel" />
+
+
+        <Button Clicked="DeleteBtn_Clicked" Text="Delete" />
+        <Button Clicked="UpdateBtn_Clicked" Text="Update" />
+
+    </StackLayout>
+</ContentPage>

@@ -29,3 +29,9 @@ This application was built to help users manage any subscriptions or memberships
 3rd: List of subscriptions for the user.
 
 ![SubHub List of Subs](https://github.com/hswayze7/SubHub/assets/126520071/f75a982b-4ac8-4549-a9b5-983d48ae7ce9)
+
+4th: Delete function.
+
+![subhub delete](https://github.com/hswayze7/SubHub/assets/126520071/82d52781-739d-44be-b7ad-129538425957)
+
+![subhub delete proven](https://github.com/hswayze7/SubHub/assets/126520071/2ac64115-0cbc-4606-9854-2be4c341b764)

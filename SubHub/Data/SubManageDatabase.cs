@@ -12,10 +12,10 @@ namespace SubHub.Data;
 public class SubManageDatabase
 {
      SQLiteAsyncConnection _connection;
-   /* public SubManageDatabase()
+    public SubManageDatabase()
     {
-
-    }*/
+        //_connection = new SQLiteAsyncConnection();
+    }
 
     async Task Init()
     {
@@ -28,6 +28,72 @@ public class SubManageDatabase
         _connection = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
         var result = await _connection.CreateTableAsync<SubItem>();
         var result2 = await _connection.CreateTableAsync<SubscriptionItem>();
+        var result3 = await _connection.CreateTableAsync<PaymentMethodItem>();
+    }
+
+    //Update payment
+    public async Task UpdatePayment(PaymentMethodItem item)
+    {
+        await Init();
+        await _connection.UpdateAsync(item);
+    }
+    //Update subscription
+    public async Task UpdateSub(SubscriptionItem item)
+    {
+        await Init();
+        await _connection.UpdateAsync(item);
+    }
+
+    //Gets both subscriptioninfo and paymentinfo of a subscription.
+    public async Task<(SubscriptionItem, PaymentMethodItem)> GetSubscriptionWithPaymentAsync(int subscriptionID)
+    {
+        await Init();
+        var subscription = await _connection.Table<SubscriptionItem>().FirstOrDefaultAsync(sub => sub.SubID == subscriptionID);
+
+        var paymentMethod = await _connection.Table<PaymentMethodItem>().FirstOrDefaultAsync(pm => pm.SubID == subscriptionID);
+
+        return (subscription, paymentMethod);
+    }
+
+    //Gets paymentforSubs
+    public async Task<PaymentMethodItem> GetPaymentMethodForSub(SubscriptionItem sub)
+    {
+        await Init();
+        return await _connection.Table<PaymentMethodItem>().FirstOrDefaultAsync(p => p.SubID == sub.SubID);
+    }
+
+    //Adds payment info for a subscription
+    public async Task<int> AddPaymentMethod(PaymentMethodItem item)
+    {
+        await Init();
+        if (item.PaymentMethodID != 0)
+        {
+            return await _connection.UpdateAsync(item);
+        }
+        else
+        {
+            return await _connection.InsertAsync(item);
+        }
+        
+    }
+    //Deletes a subscription
+    public async Task DeleteSubAsync(int subID)
+    {
+        await Init();
+        var subToDel = await _connection.Table<SubscriptionItem>().FirstOrDefaultAsync(s => s.SubID == subID);
+        if (subToDel != null)
+        {
+            await _connection.DeleteAsync(subToDel);
+
+            
+        }
+       
+    }
+    //Gets subscription
+    public async Task<SubscriptionItem> GetSubscriptionAsync(int SubID)
+    {
+        await Init();
+        return await _connection.Table<SubscriptionItem>().FirstOrDefaultAsync(s  => s.SubID == SubID);
     }
 
     //Function that will get subscriptions based on UserID
@@ -58,7 +124,7 @@ public class SubManageDatabase
         }
     }
 
-
+    //Add subscription for user.
     public async Task AddSubscriptionForUser(int userId, SubscriptionItem subscription)
     {
         await Init();
@@ -68,6 +134,7 @@ public class SubManageDatabase
         // Insert the subscription into the database
         await _connection.InsertAsync(subscription);
     }
+    //Create a new user
     public async Task<int> CreateUser(SubItem user)
     {
         await Init();
@@ -117,10 +184,10 @@ public class SubManageDatabase
     }
 
     //Task to get a subscription for the user based on the ID
-    public async Task<SubItem> GetSubAsync(int id)
+    public async Task<SubItem> GetSubAsync(int SubID)
     {
         await Init();
-        return await _connection.Table<SubItem>().Where(i => i.UserID == id).FirstOrDefaultAsync();
+        return await _connection.Table<SubItem>().Where(i => i.UserID == SubID).FirstOrDefaultAsync();
     }
     //Task that will save a subscription. Will check if the ID is already assigned or not to determine if the subscription needs to be added or updated.
     public async Task<int> SaveSubAsync(SubscriptionItem sub)
@@ -138,9 +205,9 @@ public class SubManageDatabase
 
 
     //Task to delete a subscription if needed. Will get the ID for the sub and delete sub based on the ID.
-    public async Task<int> DeleteSubAsync(SubscriptionItem sub)
+  /*  public async Task<int> DeleteSubAsync(SubscriptionItem sub)
     {
         await Init();
         return await _connection.DeleteAsync(sub);
-    }
+    }*/
 }

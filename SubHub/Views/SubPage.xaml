@@ -7,13 +7,18 @@
     xmlns:views="clr-namespace:SubHub.Views"
     Title="SubPage">
     <StackLayout Padding="20">
-        <ListView x:Name="SubsListView" ItemsSource="{Binding Subs}">
+        <ListView
+            x:Name="SubsListView"
+            ItemTapped="SubsListView_Tapped"
+            ItemsSource="{Binding Subs}"
+            SelectionMode="Single"
+            SeparatorVisibility="Default">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
                             <StackLayout>
-                                <Label Text="{Binding Name}" />
+                                <Label FontAttributes="Bold" Text="{Binding Name}" />
                                 <Label Text="{Binding Description}" />
                                 <Label Text="{Binding Price, StringFormat='Price: {0:C}'}" />
                             </StackLayout>

@@ -14,10 +14,16 @@
     <MauiXaml Update="Views\AddSubPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Views\SubInfoPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\SubLogin.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Views\SubPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Views\UpdateSubPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
   </ItemGroup>
