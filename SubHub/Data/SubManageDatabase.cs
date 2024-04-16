@@ -14,7 +14,7 @@ public class SubManageDatabase
      SQLiteAsyncConnection _connection;
     public SubManageDatabase()
     {
-        //_connection = new SQLiteAsyncConnection();
+        
     }
 
     async Task Init()
@@ -29,30 +29,96 @@ public class SubManageDatabase
         var result = await _connection.CreateTableAsync<SubItem>();
         var result2 = await _connection.CreateTableAsync<SubscriptionItem>();
         var result3 = await _connection.CreateTableAsync<PaymentMethodItem>();
+        var result4 = await _connection.CreateTableAsync<ReminderItem>();
     }
-
-    //Update payment
-    public async Task UpdatePayment(PaymentMethodItem item)
+    public async Task<ReminderItem> GetReminderAsync(ReminderItem reminder)
     {
         await Init();
-        await _connection.UpdateAsync(item);
+        return await _connection.Table<ReminderItem>().FirstOrDefaultAsync(r => r.SubID == reminder.SubID);
+    }
+    public async Task UpdateReminder(int subscriptionID, ReminderItem reminderItem)
+    {
+        await Init();
+
+        
+        var existingReminderItem = await _connection.Table<ReminderItem>()
+                                                    .FirstOrDefaultAsync(p => p.SubID == subscriptionID);
+
+        if (existingReminderItem != null)
+        {
+            
+            existingReminderItem.ReminderMessage = reminderItem.ReminderMessage;
+        
+
+            
+            await _connection.UpdateAsync(existingReminderItem);
+        }
+        else
+        {
+            
+            throw new Exception($"No reminder found for subscription with ID: {subscriptionID}");
+        }
+    }
+    public async Task<ReminderItem> GetReminderBySub(int subId)
+    {
+        await Init();
+        return await _connection.Table<ReminderItem>().FirstOrDefaultAsync(s => s.SubID == subId);
+    }
+    public async Task<int> AddReminder(ReminderItem item)
+    {
+        await Init();
+        if (item.ReminderID != 0)
+        {
+            return await _connection.UpdateAsync(item);
+        }
+        else
+        {
+            return await _connection.InsertAsync(item);
+        }
+
+    }
+    public async Task<int> SavePaymentAsync(PaymentMethodItem sub)
+    {
+        await Init();
+        if (sub.PaymentMethodID != 0)
+        {
+            return await _connection.UpdateAsync(sub);
+        }
+        else
+        {
+            return await _connection.InsertAsync(sub);
+        }
+    }
+    //Update payment
+    public async Task UpdatePayment(int subscriptionID, PaymentMethodItem updatedPaymentMethod)
+    {
+        await Init();
+
+        
+        var existingPaymentMethod = await _connection.Table<PaymentMethodItem>()
+                                                    .FirstOrDefaultAsync(p => p.SubID == subscriptionID);
+
+        if (existingPaymentMethod != null)
+        {
+           
+            existingPaymentMethod.Type = updatedPaymentMethod.Type;
+            existingPaymentMethod.CardNumber = updatedPaymentMethod.CardNumber;
+            existingPaymentMethod.CvC = updatedPaymentMethod.CvC;
+
+          
+            await _connection.UpdateAsync(existingPaymentMethod);
+        }
+        else
+        {
+            
+            throw new Exception($"No payment method found for subscription with ID: {subscriptionID}");
+        }
     }
     //Update subscription
     public async Task UpdateSub(SubscriptionItem item)
     {
         await Init();
         await _connection.UpdateAsync(item);
-    }
-
-    //Gets both subscriptioninfo and paymentinfo of a subscription.
-    public async Task<(SubscriptionItem, PaymentMethodItem)> GetSubscriptionWithPaymentAsync(int subscriptionID)
-    {
-        await Init();
-        var subscription = await _connection.Table<SubscriptionItem>().FirstOrDefaultAsync(sub => sub.SubID == subscriptionID);
-
-        var paymentMethod = await _connection.Table<PaymentMethodItem>().FirstOrDefaultAsync(pm => pm.SubID == subscriptionID);
-
-        return (subscription, paymentMethod);
     }
 
     //Gets paymentforSubs
@@ -100,15 +166,21 @@ public class SubManageDatabase
     public async Task<List<SubscriptionItem>> GetSubscriptionsByUserId(int userId)
     {
         await Init();
+        return await _connection.Table<SubscriptionItem>().Where(s =>  s.UserID == userId).ToListAsync();
+    }
+ /*   public async Task<List<SubscriptionItem>> GetSubscriptionsByUserId(int userId)
+    {
+        await Init();
         return await _connection.Table<SubscriptionItem>().Where(s => s.UserID == userId).ToListAsync();
     }
-
+*/
     //Obtains the user via password and username
     public async Task<SubItem> GetUserByUsernameAndPassword(string username, string password)
     {
         await Init();
         return await _connection.Table<SubItem>().FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
     }
+    
 
     //Function to Add a subcription
     public async Task<int> AddSubAynsc(SubscriptionItem sub)
@@ -121,6 +193,7 @@ public class SubManageDatabase
         else
         {
             return await _connection.InsertAsync(sub);
+            
         }
     }
 
@@ -189,6 +262,7 @@ public class SubManageDatabase
         await Init();
         return await _connection.Table<SubItem>().Where(i => i.UserID == SubID).FirstOrDefaultAsync();
     }
+
     //Task that will save a subscription. Will check if the ID is already assigned or not to determine if the subscription needs to be added or updated.
     public async Task<int> SaveSubAsync(SubscriptionItem sub)
     {

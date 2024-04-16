@@ -22,6 +22,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<SubManageDatabase>();
         builder.Services.AddSingleton<AddSubPage>();
         builder.Services.AddSingleton<SubInfoPage>();
+        builder.Services.AddSingleton<UpdateSubPage>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

@@ -13,6 +13,7 @@ public class SubItem
 {
     [PrimaryKey, AutoIncrement]
     [Column("UserID")]
+   // [Unique]
     public int UserID { get; set; }
 
     [Column("Username")]

@@ -14,7 +14,13 @@ public class SubscriptionItem
 {
     [PrimaryKey, AutoIncrement]
     [Column("SubID")]
+   // [Unique]
     public int SubID { get; set; }
+
+    //[Indexed]
+    [ForeignKey(typeof(SubItem))]
+    [Column("UserID")]
+    public int UserID { get; set; }
 
     [Column("Name")]
     public string? Name { get; set; }
@@ -28,13 +34,13 @@ public class SubscriptionItem
     //public Date RenewalDate {get; set; }
 
 
-    
-    [Indexed]
-    [ForeignKey(typeof(SubItem))]
-    [Column("UserID")]
-    public int UserID { get; set; }
 
-    
+    /*  [Indexed]
+      [ForeignKey(typeof(SubItem))]
+      [Column("UserID")]
+      public int UserID { get; set; }*/
+
+
     [ManyToOne]
     public SubItem? User { get; set; }
 

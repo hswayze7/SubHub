@@ -44,9 +44,16 @@
             Text="CvC: " />
         <Label x:Name="CvCLabel" />
 
+        <Label
+            Margin="0,10,0,0"
+            FontAttributes="Bold"
+            Text="Reminder: " />
+        <Label x:Name="RemindLabel" />
+
 
         <Button Clicked="DeleteBtn_Clicked" Text="Delete" />
         <Button Clicked="UpdateBtn_Clicked" Text="Update" />
+        <Button Clicked="BackBtn_Clicked" Text="Back" />
 
     </StackLayout>
 </ContentPage>

@@ -54,6 +54,14 @@
             Placeholder="CvC"
             Text="{Binding CvC}" />
 
+        <Label Text="Reminder Message" />
+        <Entry
+            x:Name="reminderMessageEntry"
+            x:DataType="models:ReminderItem"
+            Placeholder="Enter your message here."
+            Text="{Binding ReminderMessage}" />
+
+
 
 
         <Button Clicked="SaveSubBtn_Clicked" Text="Save" />

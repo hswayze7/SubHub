@@ -12,37 +12,64 @@
             Text="Subscription Details" />
 
         <Label FontAttributes="Bold" Text="Name: " />
-        <Entry x:Name="NameLabel" />
+        <Entry
+            x:Name="NameLabel"
+            x:DataType="models:SubscriptionItem"
+            Text="{Binding Name}" />
 
         <Label
             Margin="0,10,0,0"
             FontAttributes="Bold"
             Text="Description: " />
-        <Entry x:Name="DescriptionLabel" />
+        <Entry
+            x:Name="DescriptionLabel"
+            x:DataType="models:SubscriptionItem"
+            Text="{Binding Description}" />
 
         <Label
             Margin="0,10,0,0"
             FontAttributes="Bold"
             Text="Price: " />
-        <Entry x:Name="PriceLabel" />
+        <Entry
+            x:Name="PriceLabel"
+            x:DataType="models:SubscriptionItem"
+            Text="{Binding Price}" />
 
         <Label
             Margin="0,10,0,0"
             FontAttributes="Bold"
             Text="Payment Method Type" />
-        <Entry x:Name="PaymentMethodTypeLabel" />
+        <Entry
+            x:Name="PaymentMethodTypeLabel"
+            x:DataType="models:PaymentMethodItem"
+            Text="{Binding Type}" />
 
         <Label
             Margin="0,10,0,0"
             FontAttributes="Bold"
             Text="Card Number:" />
-        <Entry x:Name="CardNumberLabel" />
+        <Entry
+            x:Name="CardNumberLabel"
+            x:DataType="models:PaymentMethodItem"
+            Text="{Binding CardNumber}" />
 
         <Label
             Margin="0,10,0,0"
             FontAttributes="Bold"
             Text="CvC: " />
-        <Entry x:Name="CvCLabel" />
+        <Entry
+            x:Name="CvCLabel"
+            x:DataType="models:PaymentMethodItem"
+            Text="{Binding CvC}" />
+
+        <Label
+            Margin="0,10,0,0"
+            FontAttributes="Bold"
+            Text="Reminder Message: " />
+        <Entry
+            x:Name="RemindLabel"
+            x:DataType="models:ReminderItem"
+            Text="{Binding ReminderMessage}" />
 
         <Button Clicked="SaveBtn_Clicked" Text="Save" />
     </StackLayout>

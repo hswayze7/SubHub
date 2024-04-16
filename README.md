@@ -35,3 +35,12 @@ This application was built to help users manage any subscriptions or memberships
 ![subhub delete](https://github.com/hswayze7/SubHub/assets/126520071/82d52781-739d-44be-b7ad-129538425957)
 
 ![subhub delete proven](https://github.com/hswayze7/SubHub/assets/126520071/2ac64115-0cbc-4606-9854-2be4c341b764)
+
+4th: Updating function.
+
+![reminder1](https://github.com/hswayze7/SubHub/assets/126520071/f714bf0a-2950-4f2d-b17c-a0bd3c58fa55)
+
+![reminder2](https://github.com/hswayze7/SubHub/assets/126520071/0250746f-18aa-4497-adce-84d04953c4cc)
+
+![reminder3](https://github.com/hswayze7/SubHub/assets/126520071/45b67c19-07a9-42b2-8191-4e275667aaea)
+
